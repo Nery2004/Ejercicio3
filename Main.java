@@ -40,7 +40,7 @@ public class Main {
                 System.out.print("Ingrese el código único del estudiante: ");
                 int codigo = scanner.nextInt();
                 scanner.nextLine();
-                System.out.print("Ingrese la fecha de nacimiento del estudiante (Dia-Mes-Año  No ingrese las '-'): ");
+                System.out.print("Ingrese la fecha de nacimiento del estudiante (AAAAMMDD): ");
                 int fechaNacimiento = scanner.nextInt();
                 scanner.nextLine();
                 System.out.print("Ingrese el correo electrónico del estudiante: ");
@@ -85,11 +85,18 @@ public class Main {
                 int codigoEstudiante = scanner.nextInt();
                 scanner.nextLine();
 
-                // Calcular estadísticas para el estudiante específico
-                sistema.calcularEstadisticasEstudiante(codigoEstudiante);
+                // Obtener las estadísticas para el estudiante específico
+                double[] estadisticas = sistema.obtenerEstadisticasEstudiante(codigoEstudiante);
 
                 // Mostrar las estadísticas calculadas
-                // Implementa el mostrar estadísticas aquí
+                if (estadisticas != null) {
+                    System.out.println("Promedio: " + estadisticas[0]);
+                    System.out.println("Mediana: " + estadisticas[1]);
+                    System.out.println("Moda: " + estadisticas[2]);
+                    System.out.println("Desviación estándar: " + estadisticas[3]);
+                } else {
+                    System.out.println("No se encontraron estadísticas para el estudiante con código " + codigoEstudiante);
+                }
             } else if (opcion == 4) {
                 // Mostrar resultados de cada sede
                 for (Sede sede : sedes) {
